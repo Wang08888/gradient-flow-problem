@@ -1,0 +1,58 @@
+name: Render proof PDFs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "proofs/**/*.md"
+      - "scripts/md2html.js"
+      - "scripts/render-proof-pdfs.sh"
+      - "package.json"
+      - ".github/workflows/render-proof-pdfs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-proof-pdfs
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install renderer dependencies
+        run: npm install --no-fund --no-audit
+
+      - name: Locate Chrome
+        shell: bash
+        run: |
+          chrome="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$chrome"
+          echo "CHROME_BIN=$chrome" >> "$GITHUB_ENV"
+
+      - name: Render reports
+        run: bash scripts/render-proof-pdfs.sh
+
+      - name: Commit generated PDFs
+        shell: bash
+        run: |
+          git add -- proofs
+          if git diff --cached --quiet; then
+            echo "PDFs are already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Render updated proof PDFs"
+          git push
