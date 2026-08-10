@@ -1,4 +1,4 @@
-# 曲率归一化移动中心缩放下 Proposition 5.1 的严格审计与修正版
+# 曲率归一化移动中心缩放、第一类奇点与 Proposition 5.1 的严格审计
 
 ## 摘要
 
@@ -20,6 +20,14 @@ q_j=\lambda_j\bigl(F(x_j,t_j)-X_0\bigr),
 $$
 
 若 \(q_j\) 与 \(\theta_j\) 有界，则 \(H_j,V_j,f_j\) 的三个移动中心局部 \(L^2\) 极限成立；第四个 \(F_j^\perp\) 极限还需要 \(q_j^\perp\) 的局部 \(L^2\) 贡献趋于零。特别地，\(q_j\to0\) 加上局部 spacetime area bound 足以保证第四个极限。整个论证不使用 Han--Li--Sun 的 moving-cutoff 公式 (5.5)。
+
+本文进一步回答第一类奇点下的中心位移问题。结论是否定的：第一类曲率上界与 \(F(x_j,t_j)\to X_0\) 本身不能推出 \(q_j\to0\)。精确缺失的是
+
+$$
+|F(x_j,t_j)-X_0|=o(\lambda_j^{-1});
+$$
+
+在 essential Type-I 尺度 \(\lambda_j\asymp(T-t_j)^{-1/2}\) 下，这等价于距离为 \(o(\sqrt{T-t_j})\)。缩小圆球对 \(\lambda_j=|H|,|A|,(T-t_j)^{-1/2}\) 三种选择均给出非零常值 \(q_j\)。因此不能把 \(q_j\to0\) 当作排除第一类奇点的中间结论。本文同时逐行审计 Chen--Li 定理 4.7：原文只需要 \(q_j\) 有界并取子列收敛；真正的缺口是曲率在 \(x_k\) 归一化却在 \(p\) 处宣称非退化，以及缩放后 cutoff 的错误换元。文末给出不要求 \(q=0\) 的严格条件修复。
 
 ## 1. 两种缩放与目标命题
 
@@ -488,7 +496,323 @@ $$
 
 这说明 center displacement 的 normal component 是真实的几何误差项，不能被一句“平移不影响曲率”消去。
 
-## 7. fixed cutoff 与非循环性
+## 7. 第一类奇点条件不能推出 \(q_j\to0\)
+
+这一节直接处理新增条件。以下计算在以 \(X_0\) 为原点的 normal coordinates 中进行；记
+
+$$
+d_j=|F(x_j,t_j)-X_0|,
+\qquad
+q_j=\lambda_j(F(x_j,t_j)-X_0).
+\tag{7.1}
+$$
+
+### Proposition 7.1（精确速率判据）
+
+设 \(t_j\nearrow T\)、\(d_j\to0\) 且 \(\lambda_j>0\)。则
+
+$$
+q_j\to0
+\quad\Longleftrightarrow\quad
+d_j=o(\lambda_j^{-1}).
+\tag{7.2}
+$$
+
+若流满足第一类上界
+
+$$
+|A|^2(x,t)\leq\frac{K}{T-t},
+\tag{7.3}
+$$
+
+则对 \(\lambda_j=|A|(x_j,t_j)\) 或 \(\lambda_j=|H|(x_j,t_j)\)，条件
+
+$$
+d_j=o(\sqrt{T-t_j})
+\tag{7.4}
+$$
+
+足以推出 \(q_j\to0\)。若相应序列还是 essential Type-I，即对某个 \(c>0\) 有
+
+$$
+\lambda_j\sqrt{T-t_j}\geq c,
+\tag{7.5}
+$$
+
+则 (7.4) 也是必要条件。对标准尺度 \(\lambda_j=(T-t_j)^{-1/2}\)，(7.4) 与 \(q_j\to0\) 无条件等价。
+
+### Proof
+
+由定义有精确恒等式
+
+$$
+|q_j|=\lambda_jd_j.
+\tag{7.6}
+$$
+
+这立即证明 (7.2)。对二维流，Cauchy--Schwarz 不等式给出
+
+$$
+|H|^2\leq2|A|^2.
+\tag{7.7}
+$$
+
+故 (7.3) 对 \(\lambda_j=|A|\) 给出
+\(\lambda_j\sqrt{T-t_j}\leq\sqrt K\)，对 \(\lambda_j=|H|\) 给出
+\(\lambda_j\sqrt{T-t_j}\leq\sqrt{2K}\)。把 (7.6) 写成
+
+$$
+|q_j|=
+\bigl(\lambda_j\sqrt{T-t_j}\bigr)
+\frac{d_j}{\sqrt{T-t_j}},
+$$
+
+便得充分性。若还有 (7.5)，同一恒等式的下界给出必要性。标准尺度的结论则直接由
+\(|q_j|=d_j/\sqrt{T-t_j}\) 得到。证毕。
+
+### 7.2 第一类缩小球反例
+
+上述小 \(o\) 条件不能由普通收敛 \(d_j\to0\) 替代。取 \(T=1\)，令
+
+$$
+F:S^2\times[0,1)\longrightarrow\mathbb R^4,
+\qquad
+F(u,t)=2\sqrt{1-t}\,u,
+\tag{7.8}
+$$
+
+其中 \(S^2\) 位于 \(\mathbb R^4\) 的一个三维线性子空间。它满足 \(\partial_tF=H\)，并且
+
+$$
+|A|^2=\frac1{2(1-t)},
+\qquad
+|H|=\frac1{\sqrt{1-t}}.
+\tag{7.9}
+$$
+
+所以 \(t=1\) 是第一类首次奇点。固定 \(u_0\in S^2\)，取 \(x_j=u_0\)、\(t_j\nearrow1\)、\(X_0=0\)。曲率在每个时间片上为常数，因此 \(x_j\) 也是曲率最大点；同时
+
+$$
+F(x_j,t_j)=2\sqrt{1-t_j}\,u_0\longrightarrow0.
+$$
+
+但是三种尺度分别给出
+
+$$
+\begin{array}{c|c}
+\lambda_j & q_j=\lambda_jF(x_j,t_j)\\
+\hline
+|H|(x_j,t_j) & 2u_0\\
+|A|(x_j,t_j) & \sqrt2\,u_0\\
+(1-t_j)^{-1/2} & 2u_0
+\end{array}
+\tag{7.10}
+$$
+
+三者均不趋于零。这个例子是普通 mean curvature flow，而不是 Han--Li--Sun 的 beta-symplectic flow；它在本问题中的逻辑作用是严格否定“第一类上界加点收敛本身蕴含 \(q_j\to0\)”这一纯尺度推断。若想利用 beta-symplectic 方程的额外结构排除第一类奇点，必须直接使用该结构，不能先把 (7.2) 所需的小 \(o\) 速率当成第一类条件的结论。
+
+### 7.3 对新增命题的判定
+
+因此，按题目给出的假设，\(q_j\to0\) **不能证明**。一个正确的加强版是额外假设 (7.4)，或直接假设 \(d_j=o(\lambda_j^{-1})\)。另一方面，排除第一类奇点并不要求 \(q_j\to0\)：Chen--Li 的思路只把 \(q_j\) 控制为有界，取子列 \(q_j\to q\)，然后证明极限既非平坦又必须平坦。下一节审计这个论证中真正需要修复的环节。
+
+## 8. Chen--Li 定理 4.7 的逐项审计与修复
+
+Chen--Li 在印刷页 305--308 讨论 Kähler--Einstein 四维流形中 symplectic surface 的 mean curvature flow。令
+
+$$
+\lambda_k^2=|A|^2(x_k,t_k)=\max_{t\leq t_k}|A|^2,
+\qquad x_k\to p,\quad t_k\nearrow T,
+\tag{8.1}
+$$
+
+并在坐标中令 \(F(p,T)=X_0=0\)。原文采用
+
+$$
+F_k(x,t)=\lambda_k\Bigl(
+F(x,t_k+\lambda_k^{-2}t)-F(p,t_k)
+\Bigr).
+\tag{8.2}
+$$
+
+### 8.1 原文得到的是 \(q_k\) 有界，不是 \(q_k\to0\)
+
+第一类上界和 \(|H|\leq\sqrt2|A|\) 给出
+
+$$
+|F(p,t_k)-F(p,T)|
+\leq\int_{t_k}^{T}|H(p,t)|\,dt
+\leq C\sqrt{T-t_k}.
+\tag{8.3}
+$$
+
+结合 \(\lambda_k\sqrt{T-t_k}\leq C\)，只能得到
+
+$$
+|q_k|:=|\lambda_kF(p,t_k)|\leq C.
+\tag{8.4}
+$$
+
+于是可以取子列 \(q_k\to q\)，但完全没有理由要求 \(q=0\)。印刷页 307 的原文也明确写的是 “we assume that \(\lambda_kF(p,t_k)\to q\)”；所以非零 \(q\) 不是定理 4.7 的错误，也不妨碍最后的平坦性论证。
+
+### 8.2 第一个实质缺口：归一化点与中心点混淆
+
+由 (8.1)--(8.2) 能严格推出的是
+
+$$
+|A_k|^2(x_k,0)=1,
+\qquad
+F_k(x_k,0)=\lambda_k(F(x_k,t_k)-F(p,t_k)).
+\tag{8.5}
+$$
+
+而在 \(p\) 处只有
+
+$$
+|A_k|^2(p,0)=\lambda_k^{-2}|A|^2(p,t_k).
+\tag{8.6}
+$$
+
+原文印刷页 306 直接宣称 \(|A_k|^2(p,0)\geq c>0\)，但 \(x_k\to p\) 并不能给出
+\(|A|^2(p,t_k)\geq c\lambda_k^2\)。尖峰可以位于趋向 \(p\) 的 \(x_k\)，同时其宽度远小于 \(d(x_k,p)\)，使 (8.6) 趋于零。等价地，在以 \(p\) 为中心的固定 ambient ball 中，归一化点只有在
+
+$$
+\lambda_k|F(x_k,t_k)-F(p,t_k)|\leq C
+\tag{8.7}
+$$
+
+时才不会逃到无穷远。原证明没有建立 (8.6) 的正下界，也没有建立 (8.7)。因此其 smooth-limit 非平坦性 \(|A_\infty|(0,0)>0\) 尚未被证明。
+
+### 8.3 第二个实质缺口：cutoff 的缩放换元
+
+令 \(s=t_k+\lambda_k^{-2}t\)、\(P_k=F(p,t_k)\)。二维面积元满足
+\(d\mu_t^k=\lambda_k^2d\mu_s\)，并且
+
+$$
+F_k+\lambda_kP_k=\lambda_kF,
+\qquad
+t_k-s=-\lambda_k^{-2}t.
+$$
+
+因此含 cutoff 的正确换元是
+
+$$
+\begin{aligned}
+&\int_{\Sigma_t^k}\frac1v\,\phi_R(F_k)\frac1{-t}
+\exp\!\left(-\frac{|F_k+\lambda_kP_k|^2}{4(-t)}\right)d\mu_t^k\\
+&=\int_{\Sigma_s}\frac1v\,
+\phi_R\!\left(\lambda_k(F-P_k)\right)
+\frac1{t_k-s}
+\exp\!\left(-\frac{|F|^2}{4(t_k-s)}\right)d\mu_s.
+\end{aligned}
+\tag{8.8}
+$$
+
+印刷页 306 右端写成了 \(\phi_R(F)\)。除非另行证明两个 cutoff 相等或估计其误差，这不是合法的变量替换。
+
+一种无循环的修复是在原坐标中先固定 \(\chi\in C_c^\infty\)，使 \(\chi=1\) 于 \(X_0\) 的某个邻域。由于 \(\lambda_kP_k\) 有界，在任意固定 rescaled ball \(|Y|\leq R\) 上
+
+$$
+F=P_k+\lambda_k^{-1}Y\longrightarrow X_0
+\tag{8.9}
+$$
+
+一致成立，所以大 \(k\) 时 \(\chi(F)\equiv1\)。这样可直接使用 fixed original-coordinate cutoff；若坚持使用 \(\phi_R(F_k)\)，则必须保留 (8.8) 中的 \(k\)-dependent moving cutoff。
+
+### 8.4 最后的二维代数可以严格补全
+
+假设经过正确的 monotonicity 与 compactness 论证，得到一个 smooth immersed surface
+\(F_\infty:\Sigma_\infty\to\mathbb R^4\)，满足
+
+$$
+H_\infty=0,
+\qquad
+(F_\infty+q)^\perp=0.
+\tag{8.10}
+$$
+
+在开集 \(\Omega=\{F_\infty+q\neq0\}\) 上，向量 \(F_\infty+q\) 是非零 tangent vector。写
+\(F_\infty+q=dF_\infty(W)\)。对任意 tangent vector \(X\)，由
+
+$$
+D_X(F_\infty+q)=dF_\infty(X)
+$$
+
+取 normal component，Gauss 公式给出 \(A_\infty(X,W)=0\)。在二维正交标架中取
+\(e_1=W/|W|\)，便有
+
+$$
+A_\infty(e_1,e_1)=A_\infty(e_1,e_2)=0.
+$$
+
+再由 \(H_\infty=A_\infty(e_1,e_1)+A_\infty(e_2,e_2)=0\)，得到
+\(A_\infty(e_2,e_2)=0\)。故 \(A_\infty=0\) 于 \(\Omega\)。集合 \(\Omega\) 稠密：若
+\(F_\infty+q\) 在非空开集上为零，则 \(F_\infty\) 在该开集上为常值，与 immersion 矛盾。由连续性，\(A_\infty\equiv0\) 于全体。这个结论允许任意常向量 \(q\)，不需要 \(q=0\)。
+
+### 8.5 严格的条件修正版
+
+下面把 compactness 与 monotonicity 真正需要给出的量写成显式条件，而不把 \(q=0\) 混入结论。
+
+**Theorem 8.1（允许非零 \(q\) 的条件 blow-up contradiction）.** 设 \(G_k:M_k\to\mathbb R^N\) 是二维 rescaled time-slices，\(p_k\in M_k\)，并有
+
+$$
+|A_k|(p_k)=1,
+\qquad q_k\to q\in\mathbb R^N,
+\qquad \theta_k\to\theta\in(0,\infty).
+\tag{8.11}
+$$
+
+设存在连通二维流形 \(U\)、点 \(p_\infty\in U\) 和 compact exhaustion \(K_i\Subset U\)，使每个 \(K_i\) 的内部含 \(p_\infty\)，并存在 embeddings
+\(\Phi_{k,i}:K_i\to M_k\)，满足
+
+$$
+\Phi_{k,i}(p_\infty)=p_k,
+\qquad
+G_k\circ\Phi_{k,i}\longrightarrow G_\infty
+\quad\hbox{in }C^2(K_i).
+\tag{8.12}
+$$
+
+若对每个 \(i\) 及某个固定 \(\varepsilon\in\{-1,1\}\)，正确的 localized estimates 给出
+
+$$
+\int_{K_i}|H_k|^2\,d\mu_k\longrightarrow0,
+\tag{8.13}
+$$
+
+$$
+\int_{K_i}\left|
+H_k+\frac{\varepsilon}{2\theta_k}(G_k+q_k)^\perp
+\right|^2d\mu_k\longrightarrow0,
+\tag{8.14}
+$$
+
+则这些假设互相矛盾。特别地，这个 contradiction 只要求 \(q_k\) 收敛到有限向量，不要求 \(q=0\)。
+
+**Proof.** 由 (8.12)，induced metrics、area densities、mean curvature vectors 和 normal projections 在每个 \(K_i\) 上一致收敛。故 (8.13)--(8.14) 传到极限后给出
+
+$$
+H_\infty=0,
+\qquad
+H_\infty+\frac{\varepsilon}{2\theta}(G_\infty+q)^\perp=0
+\quad\hbox{on }K_i^\circ.
+\tag{8.15}
+$$
+
+因为 \(K_i^\circ\) 覆盖 \(U\) 且 \(\theta>0\)，得到
+\(H_\infty=0\) 与 \((G_\infty+q)^\perp=0\) 于 \(U\)。第 8.4 节于是给出
+\(A_\infty\equiv0\)。另一方面，(8.11)--(8.12) 的 \(C^2\) convergence 保留基点曲率：
+
+$$
+|A_\infty|(p_\infty)=
+\lim_{k\to\infty}|A_k|(p_k)=1,
+\tag{8.16}
+$$
+
+矛盾。证毕。
+
+要把 Theorem 8.1 应用于 Chen--Li 原文，还必须在原始假设下真正建立两件事：第一，选定的 rescaling 必须把 \(|A_k|=1\) 的点保留在 pointed compactness 区域；第二，使用 (8.8) 或 fixed original-coordinate cutoff 后，必须严格导出 (8.13)--(8.14)。以 \(p\) 为中心时，第一项可由附加定位条件 (8.7) 保证；以 \(x_k\) 为中心则有 \(G_k(x_k,0)=0\) 自动成立，但 Gaussian 终点中心也必须相应选择并重新核验 localized estimates。不能一边采用 \(x_k\) 的曲率归一化，一边无证明地把非退化性移到固定点 \(p\)。
+
+## 9. fixed cutoff 与非循环性
 
 上述 transfer proof 只使用 fixed-center Proposition 5.1、ball inclusion 和 time translation。若从 weighted monotonicity 直接证明修正版，则在原坐标中选择一个固定 cutoff \(\phi\)，并使用
 
@@ -498,15 +822,19 @@ $$
 
 在 \(|F_j|\leq R\)、\(|q_j|\leq Q\) 上，\(\lambda_j^{-1}(F_j+q_j)\to0\) uniformly，因此大 \(j\) 时固定 cutoff 恒等于一。再由 (3.2) 去除 Gaussian weight，即得到 \(H_j,V_j\) 的 unweighted estimates；(2.5) 给出 \(f_j\)，monotonicity square 与 (2.11) 给出 shifted normal-position estimate。全过程不需要 moving cutoff，也不把任何一个待证消失极限作为先验条件。
 
-## 8. 结论与逻辑范围
+## 10. 结论与逻辑范围
 
 1. 书第 369 页的 curvature-normalizing moving-center scaling 与 Han--Li--Sun 的 fixed-center tangent-flow scaling 不可直接互换。
 2. “仅凭该参数化就得到 Proposition 5.1 的四个相同极限”是错误的；shrinking sphere 已在 ordinary MCF 中给出严格反例。
 3. 对 beta-symplectic flow，现有事实并未构造一个无条件反例。因此正确结论不是宣称 beta-symplectic 命题已被普遍否定，而是：没有 \(q_j,\theta_j\) 等 center-control hypotheses 时，fixed-center proof 不能推出 moving-center version；若还存在 smooth nonflat normalized limit，则第一个极限必然失败。
 4. 在 \(q_j,\theta_j\) 有界时，前三个极限由 fixed-center Proposition 5.1 严格转移。第四个极限恰好还需要 \(q_j^\perp\) 的局部 \(L^2\) 消失；\(q_j\to0\) 与 local area bound 是一个清晰的充分条件。
 5. 这一区分解释了两种 blow-up 的用途：fixed-center scaling 用于识别 tangent behavior；curvature-normalizing moving-center scaling 则刻意保留基点曲率，通常用于寻找 nonflat singularity model。
+6. 第一类条件与 \(F(x_j,t_j)\to X_0\) 只给出尺度信息，不能推出 \(q_j\to0\)。在 \(\lambda_j\asymp(T-t_j)^{-1/2}\) 时，正确且 sharp 的附加条件是 \(|F(x_j,t_j)-X_0|=o(\sqrt{T-t_j})\)。
+7. Chen--Li 定理 4.7 的原证明只需要 \(q_k\) 有界并取子列趋于任意 \(q\)，不需要 \(q=0\)。其关键缺口是把 \(x_k\) 处的曲率归一化误写成 \(p\) 处的非退化性，以及 cutoff 缩放换元不正确。
+8. 一旦另行保证归一化点不逃逸、pointed smooth compactness 和正确的 localized monotonicity 极限，则 \(H_\infty=0\) 与 \((F_\infty+q)^\perp=0\) 在二维严格推出 \(A_\infty=0\)，从而与保留下来的归一化曲率矛盾。这是一个不要求 \(q=0\) 的可验证修复。
 
 ## 参考文献
 
 1. B. Andrews, B. Chow, C. Guenther, and M. Langford, *Extrinsic Geometric Flows*, Graduate Studies in Mathematics 206, American Mathematical Society, 2020, especially printed pp. 369 and 372--374. DOI: 10.1090/gsm/206.
 2. X. Han, J. Li, and J. Sun, *Gradient flow for beta-symplectic critical surfaces*, Ann. Inst. H. Poincaré Anal. Non Linéaire 41 (2024), 1083--1116, especially Proposition 5.1. DOI: 10.4171/AIHPC/100.
+3. J. Chen and J. Li, *Mean curvature flow of surface in 4-manifolds*, Advances in Mathematics 163 (2001), 287--309, especially Theorem 4.7 on printed pp. 305--308. DOI: 10.1006/aima.2001.2008.
