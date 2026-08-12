@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1050" viewBox="0 0 1800 1050">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7fbff"/><stop offset="1" stop-color="#edf4fa"/></linearGradient>
+    <linearGradient id="surf1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#aad8ff"/><stop offset="1" stop-color="#3b8ed4"/></linearGradient>
+    <linearGradient id="surf2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c7eedc"/><stop offset="1" stop-color="#329a66"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#17324d" flood-opacity="0.16"/></filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#315f87"/></marker>
+    <style>
+      .cn{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;fill:#14283d}.title{font-size:45px;font-weight:700}.sub{font-size:23px;fill:#53687a}.head{font-size:27px;font-weight:700;fill:#174b79}.body{font-size:20px}.small{font-size:17px;fill:#53687a}.math{font-family:"Cambria Math","Times New Roman",serif;font-size:26px;fill:#193d5d}.key{font-size:27px;font-weight:700;fill:#b72f2f}
+    </style>
+  </defs>
+  <rect width="1800" height="1050" fill="url(#bg)"/>
+  <rect x="38" y="35" width="1724" height="978" rx="28" fill="white" stroke="#c3d3e0" stroke-width="2" filter="url(#shadow)"/>
+  <text x="900" y="100" text-anchor="middle" class="cn title">非平坦 Kähler-Einstein 背景中的平面多重重数极限</text>
+  <text x="900" y="140" text-anchor="middle" class="cn sub">连通 m 重覆盖产生静态 MCF；每个 rescaled sheet 的第二基本形式恒为零</text>
+
+  <rect x="80" y="185" width="490" height="470" rx="22" fill="#f8fbfe" stroke="#91b3cf" stroke-width="2"/>
+  <text x="325" y="232" text-anchor="middle" class="cn head">1. Kähler-Einstein 复曲面</text>
+  <path d="M130 375 C150 300,230 298,263 349 C300 405,356 393,385 337 C420 272,510 299,518 374 C525 445,452 489,386 460 C324 433,291 489,229 478 C160 466,111 432,130 375Z" fill="url(#surf1)" stroke="#2477b6" stroke-width="3"/>
+  <path d="M194 395 C206 349,256 349,273 382 C292 420,330 416,345 380 C362 339,410 350,414 394 C419 437,378 460,344 440 C309 421,291 455,256 449 C219 443,185 426,194 395Z" fill="none" stroke="#f3fbff" stroke-width="7"/>
+  <text x="325" y="518" text-anchor="middle" class="math">M = C_g × C_h</text>
+  <text x="325" y="558" text-anchor="middle" class="math">Ric_M = -g_M</text>
+  <text x="325" y="594" text-anchor="middle" class="cn small">两个因子均为曲率 -1 的闭双曲曲面</text>
+  <text x="325" y="624" text-anchor="middle" class="cn small">非平坦，复维 2，Kähler-Einstein 常数 -1</text>
+
+  <line x1="593" y1="420" x2="675" y2="420" stroke="#315f87" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <rect x="690" y="185" width="470" height="470" rx="22" fill="#f8fbfe" stroke="#91b3cf" stroke-width="2"/>
+  <text x="925" y="232" text-anchor="middle" class="cn head">2. 连通 m 重覆盖流</text>
+  <path d="M740 360 C780 280,900 283,941 346 C983 411,1069 388,1108 334" fill="none" stroke="#4b95d4" stroke-width="18" stroke-linecap="round"/>
+  <path d="M740 385 C780 305,900 308,941 371 C983 436,1069 413,1108 359" fill="none" stroke="#f0a038" stroke-width="18" stroke-linecap="round"/>
+  <path d="M740 410 C780 330,900 333,941 396 C983 461,1069 438,1108 384" fill="none" stroke="#8062d1" stroke-width="18" stroke-linecap="round"/>
+  <text x="925" y="495" text-anchor="middle" class="math">F_t(q) = (p(q), y_0)</text>
+  <text x="925" y="535" text-anchor="middle" class="math">p : C_tilde → C_g,  deg p = m</text>
+  <text x="925" y="578" text-anchor="middle" class="math">A = H = 0,   eta = 1</text>
+  <text x="925" y="619" text-anchor="middle" class="cn small">完整 pushforward：V_t = m|S|，S=C_g×{y_0}</text>
+
+  <line x1="1183" y1="420" x2="1265" y2="420" stroke="#315f87" stroke-width="5" marker-end="url(#arrow)"/>
+  <text x="1224" y="390" text-anchor="middle" class="math">λ→∞</text>
+
+  <rect x="1280" y="185" width="440" height="470" rx="22" fill="#f8fbfe" stroke="#91b3cf" stroke-width="2"/>
+  <text x="1500" y="232" text-anchor="middle" class="cn head">3. Rescaled limit flow</text>
+  <polygon points="1335,390 1510,330 1665,393 1490,453" fill="url(#surf2)" stroke="#208555" stroke-width="4"/>
+  <text x="1500" y="300" text-anchor="middle" class="math">P = T_X0 S</text>
+  <text x="1500" y="508" text-anchor="middle" class="math">A_λ ≡ 0</text>
+  <text x="1500" y="550" text-anchor="middle" class="math">V_s^λ → m|P|</text>
+  <rect x="1330" y="577" width="340" height="56" rx="13" fill="#fff0f0" stroke="#d94343" stroke-width="2"/>
+  <text x="1500" y="614" text-anchor="middle" class="cn key">支撑=P，密度 Theta=m</text>
+
+  <rect x="80" y="705" width="1640" height="196" rx="22" fill="#f4f9fd" stroke="#8fb2cf" stroke-width="2"/>
+  <text x="120" y="750" class="cn head">缩放与收敛的精确含义</text>
+  <text x="120" y="795" class="math">g_λ = λ²(Exp_X0 ∘ D_(1/λ))^* g_M,      |A_λ|_(g_λ) = λ^(-1)|A|_g = 0.</text>
+  <text x="120" y="839" class="cn body">每个局部逆分支在重参数化后，于每个 λ 上都恰好是扩张定义域中的平面 P；m 个 sheet 的完整 varifold 权重相加。</text>
+  <text x="120" y="875" class="cn body">极限 s ↦ m|P| 是静态 integral Brakke flow；单位平面的高斯积分为 1，因此总高斯密度为 m。</text>
+
+  <rect x="80" y="925" width="1640" height="58" rx="14" fill="#fff7e8" stroke="#de9a24" stroke-width="2"/>
+  <text x="900" y="963" text-anchor="middle" class="cn key">该例子是 immersed m 重覆盖，不是 embedded 奇点例子；它严格说明一致曲率界不能单独推出重数一。</text>
+</svg>
