@@ -1,4 +1,8 @@
-# Wang Proposition 5.2 中光滑收敛与一重性的严格审计
+# Wang Proposition 5.2 中 embeddedness 与一重性的独立审计
+
+> **2026-08-12 Danus 复核结论（PARTLY VERIFIED）**：仅把原命题的 `immersed` 改成 `embedded`，而不补充尺度一致的单层/源点分离论证，仍不足以从“平面支撑”推出重数一。必须同时澄清：Mantegazza Proposition 3.2.10 的余维一 Type-I 框架确实另外证明了极限参数化仍为嵌入，所以它在自己的精确语境中排除了重合多层；这不是 `smooth` 一词自动包含单位 varifold 权重。Danus verifier 已接受三个关键事实：Mantegazza 原文语义与分离论证（`74df346175111591`）、双平面 rescaled-flow 的重数二压力测试（`608b481130bb04a4`）、以及平面 integral tangent 下 `Theta=m`、`Theta<2` 强迫 `m=1` 的条件链（`e2d580d28d651080`）。
+
+> **直接回答“换成 embedded 是否可以”**：只改一个单词，不可以；若同时证明一个适用于二维曲面进入四维空间的尺度一致单层定理，使极限参数化嵌入且穷尽全部质量，则可以。等价修补是适用的一重性定理，或在 tangent 已知为非零整数重数平面后加入 `Theta(X0,T)<2`。
 
 > **审计对象**：Mu-Tao Wang, *Mean Curvature Flow of Surfaces in Einstein Four-Manifolds*, Section 5, Proposition 5.2，特别是论文第 323--324 页从曲率一致有界到平面切流、Gaussian density 等于 1 的推理。
 >
