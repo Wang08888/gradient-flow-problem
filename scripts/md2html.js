@@ -43,6 +43,7 @@ code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:.9em;}
 pre{background:#f8fafc;border:1px solid #e2e8f0;padding:10px 12px;border-radius:6px;overflow-x:auto;}
 blockquote{border-left:4px solid #5f88ad;background:#f4f8fb;margin:10px 0 14px;padding:8px 15px;color:#334e68;break-inside:avoid-page;page-break-inside:avoid;}
 table{border-collapse:collapse;margin:12px 0 14px;font-size:10.4pt;width:100%;break-inside:avoid-page;page-break-inside:avoid;} th,td{border:1px solid #c7d6e3;padding:6px 9px;text-align:left;vertical-align:top;} th{background:#eaf1f7;color:#17395c;font-weight:600;}
+img{display:block;max-width:100%;height:auto;margin:10px auto 4px;break-inside:avoid-page;page-break-inside:avoid;} p:has(>img){margin-bottom:3px;break-after:avoid;page-break-after:avoid;} p:has(>img)+p{break-before:avoid;page-break-before:avoid;color:#4b6073;font-size:10.2pt;text-align:center;margin-bottom:13px;}
 .katex{font-size:1.04em;} .katex-display{margin:11px 0;overflow-x:auto;overflow-y:hidden;break-inside:avoid-page;page-break-inside:avoid;}
 hr{border:0;border-top:1px solid #d8e3ec;margin:18px 0;}
 strong{color:#142f4b;}

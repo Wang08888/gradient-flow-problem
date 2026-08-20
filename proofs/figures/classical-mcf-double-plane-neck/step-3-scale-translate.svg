@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="540" viewBox="0 0 1000 540">
+  <defs>
+    <marker id="bluearr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2f6f9f"/>
+    </marker>
+    <style>
+      .t{font-family:'Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#18324b}
+      .small{font-size:19px}.mid{font-size:23px}.big{font-size:28px;font-weight:600}
+      .guide{stroke:#b8c9d8;stroke-width:2;stroke-dasharray:7 7}
+    </style>
+  </defs>
+  <rect width="1000" height="540" rx="18" fill="#fbfdff"/>
+  <text x="55" y="48" class="t big">第 3 步：只做固定缩放 h，再把模板平移到半径 2Rᵢ</text>
+
+  <rect x="55" y="86" width="355" height="365" rx="14" fill="#f5f9fc" stroke="#c5d5e2"/>
+  <text x="87" y="122" class="t mid">归一化模板 𝒞₁</text>
+  <line x1="135" y1="390" x2="355" y2="390" stroke="#60798f" stroke-width="2"/>
+  <line x1="135" y1="390" x2="135" y2="155" stroke="#60798f" stroke-width="2"/>
+  <path d="M135 185 L195 185 C330 185 350 272 330 290 C310 330 255 355 195 355 L135 355"
+        fill="none" stroke="#e76f51" stroke-width="8" stroke-linecap="round"/>
+  <text x="84" y="191" class="t small">z=1</text>
+  <text x="73" y="362" class="t small">z=-1</text>
+  <text x="225" y="420" class="t small">坐标 (U,V)</text>
+
+  <line x1="432" y1="270" x2="530" y2="270" stroke="#2f6f9f" stroke-width="4" marker-end="url(#bluearr)"/>
+  <text x="430" y="235" class="t mid" fill="#2f6f9f">×h，平移</text>
+  <text x="445" y="307" class="t small">h 固定</text>
+  <text x="432" y="334" class="t small">只平移位置</text>
+
+  <rect x="550" y="86" width="395" height="365" rx="14" fill="#fff9f5" stroke="#e7c4b5"/>
+  <text x="580" y="122" class="t mid">实际颈：(2Rᵢ,0)+𝒞ₕ</text>
+  <line x1="620" y1="390" x2="905" y2="390" stroke="#60798f" stroke-width="2"/>
+  <line x1="660" y1="148" x2="660" y2="410" class="guide"/>
+  <text x="617" y="432" class="t small">r=2Rᵢ</text>
+  <path d="M660 175 L720 175 C855 175 875 272 855 290 C835 335 780 365 720 365 L660 365"
+        fill="none" stroke="#e76f51" stroke-width="8" stroke-linecap="round"/>
+  <text x="575" y="181" class="t small">z=h</text>
+  <text x="563" y="373" class="t small">z=-h</text>
+  <text x="735" y="420" class="t small">始终位于 r≥2Rᵢ</text>
+
+  <rect x="175" y="470" width="650" height="48" rx="10" fill="#eaf2f8"/>
+  <text x="205" y="501" class="t mid">关键：h 固定 ⇒ 颈曲率 O(h⁻¹) 与 i 无关</text>
+</svg>
