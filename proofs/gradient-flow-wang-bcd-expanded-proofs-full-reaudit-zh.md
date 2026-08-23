@@ -1,11 +1,11 @@
-# HLS 梯度流 Wang 型 B、C、D 报告的逐证明再审计
+# HLS 梯度流 Wang 型 B、C、D 的最终再审计与角无关高斯公式
 
-## 对全部公式链、附加条件、环境分类、覆盖度与反例的独立复核
+## 逐证明纠错、最小附加条件，以及不依赖 Kähler 角的补偿单调性
 
-**被审计文件**　`gradient-flow-wang-bcd-expanded-proofs-and-d-manifold-generalization-zh.pdf`  \
+**被复审基线**　`gradient-flow-wang-bcd-expanded-proofs-full-reaudit-zh.pdf`（本文件为纠错后替换版）  \
 **对象**　$\beta>0$ 的 Han--Li--Sun（HLS）$L_\beta$ 负梯度流  \
 **解的范畴**　首个奇异时刻以前的紧致经典光滑浸入解  \
-**审计方法**　原文公式复算、Danus 七单元独立核验、反例搜索、量词与尺度审计  \
+**审计方法**　原文公式复算、Danus 十二单元独立核验、反例搜索、量词与尺度审计  \
 **日期**　2026 年 8 月 23 日
 
 ---
@@ -29,7 +29,7 @@
 | §1.2 角下界 | 修正记号后通过 | 下界只在空间最小点成立；应定义右下 Dini 导数并作 ODE 比较 |
 | §2 B 型定理 | 修正两尺度后通过 | HLS Corollary 4.2 有 $0<r<\rho$ 两个尺度；原报告把外围尺度误缩成了 $r$ |
 | §3.1 高阶估计 | 原证有缺口；加条件后通过 | HLS 主符号是法丛耦合系统，不能直接写成标量 $a^{ij}$；需另验 Bernstein 能量层级 |
-| §3.2 $L^2\to L^\infty$ | 修正排字后通过 | 原式 (3.19) 漏写反斜线；另可加强为 $|f_\beta|\le2\sqrt2|A|$，无需角下界 |
+| §3.2 $L^2\to L^\infty$ | 修正排字后通过 | 原式 (3.19) 漏写反斜线；利用两系数之和为 $1$ 可加强为 $|f_\beta|\le\sqrt2|A|$，无需角下界 |
 | §3.3 LS 锁定 | 原 LS 输入不足；加条件后通过 | 须指定解析梯度映射、弱目标空间、Fredholm 指标 $0$、范数比较及正常图规范 |
 | §4 C 型定理 | 原条件不足；修订后通过 | 除注入半径桥梁外，还须加入 Bernstein 层级，并精确化 LS 的 Banach/Fredholm 输入 |
 | §5.1 产品双校准 | 通过 | 任意紧有向曲面乘积都有两张相反定向平行 Kähler 形式 |
@@ -37,7 +37,8 @@
 | §5.3 局部产品 | 修正后通过 | 没有全局投影时不能陈述“一层图”；只能谈平行分布或叶空间 |
 | §6.1 任意法向流 | 通过 | 面积变分项与 Weingarten 切向项精确抵消 |
 | §6.2 MCF 双角方程 | 通过 | 曲率系数 $A_K,B_K$ 及条件 (6.20) 正确 |
-| §6.3 HLS 余项 | 修正一句后通过 | 应有 $\mathcal D_\omega H=\Delta\eta+$ MCF 反应项；$\mathcal R_\pm$ 含 $\nabla A$ 且无符号 |
+| §6.3 HLS 余项 | 本质修正 | 定义角的 $\nabla A$ 主部由 Codazzi 消去；相反定向角仍保留无符号的 $\nabla A$ 主部，故 D 型双角论证仍不能自动闭合 |
+| 新增 §12--§16 | 新定理 | 任意经典法向流都有角无关的高斯平方完成式；有限速度缺陷给出补偿单调性、密度极限与条件性切流自收缩性，但不蕴含延拓 |
 | §6.4 余项机制 | 通过但属于假设 | 余项吸收条件是充分条件，不是 HLS 原文的自动结论 |
 | §7 抽象 D | 补全算子与正则性后通过 | covering、logistic、斜率、有限长度与光滑收敛链成立；需显式假设 (G1a) |
 | §8.1--8.2 | 通过 | 单连通基底给一层图；Jacobian 恒等式正确 |
@@ -490,12 +491,19 @@ $$
 \qquad |H|^2\le2|A|^2.
 $$
 
-又因 $0\le c^2/D\le1$、$0\le\beta s^2/D\le1$，直接得到比原报告更强、且不依赖角下界的估计
+令
+
+$$
+a=\frac{c^2}{D},\qquad b=\frac{\beta s^2}{D}.
+$$
+
+则 $a,b\ge0$ 且关键地有 $a+b=1$。因此不是分别粗估两个系数，而是利用这个凸组合关系，得到不依赖角下界的更强估计
 
 $$
 |f_\beta|
-\le |H|+|V|
-\le2\sqrt2|A|.
+\le a|H|+b|V|
+\le(a+b)\sqrt2|A|
+=\sqrt2|A|.
 \tag{C7}
 $$
 
@@ -985,7 +993,7 @@ $$
 
 原报告 (6.9)--(6.21) **通过**。常曲率时 (F7) 等价于 $K_B\ge|K_N|$ 且 $K_B+K_N>0$。
 
-### 6.3 HLS 余项不能被曲率消掉
+### 6.3 HLS 余项：定义角的主部消去，但相反角仍留下 $\nabla A$
 
 先固定**定义 HLS 泛函与速度的那一张** Kähler 形式 $\omega_0$（产品应用中通常取 $\omega_0=\omega_+$）；下文的 $c,V,b_\beta$ 全部相对于这张 $\omega_0$ 定义，而 $\eta_\pm$ 仍分别由 $\omega_\pm$ 测量。由 (A3) 与 (F3) 的线性性，令 $W=H+V$，则
 
@@ -1028,9 +1036,82 @@ $$
 \tag{F10a}
 $$
 
-其中 $\mathcal M_\pm$ 表示 (F6) 右端除 $\Delta\eta_\pm$ 外的 MCF 反应项。补上 Laplacian 后才得到 (F10)；最终方程本身是正确的。$W$ 对 $A$ 代数线性，而 $\mathcal D W$ 含 $\nabla A$；所以 $\mathcal R_\pm$ 与 $\Delta\eta_\pm$ 同属主阶，且无固定符号。环境曲率只能控制 (F10) 的 MCF 反应部分。原报告这一关键判断 **修正后通过**。
+其中 $\mathcal M_\pm$ 表示 (F6) 右端除 $\Delta\eta_\pm$ 外的 MCF 反应项。补上 Laplacian 后才得到 (F10)。到此为止只是恒等式；旧稿随后把 $\mathcal R_+$ 与 $\mathcal R_-$ 一概说成含有无符号 $\nabla A$，这一句并不准确。
 
-余项吸收 $\mathcal R_\pm\ge-\eta_\pm Q_\pm$、精确轨道 $H+V=0$、或 $f_\beta=a(t)H$ 都确实是充分机制；但前者是新增的微分假设，不能由 $M$ 的曲率单独推出。空间常 Kähler 角产生最后一种机制时，必须假设角在**整个流的每个时间片**上为空间常数；原报告没有证明这一性质由初值自动保持，且应交叉引用第 9 节而不是第 10 节。
+为看清主部，先在欧氏局部模型中取同时适配标架，使
+
+$$
+\omega_+(e_1,e_2)=c,quad
+\omega_+(e_1,v_3)=s,quad
+\omega_+(e_2,v_4)=-s,
+$$
+
+而
+
+$$
+\omega_-(e_1,e_2)=d,quad
+\omega_-(e_1,v_3)=r,quad
+\omega_-(e_2,v_4)=r,qquad r=\sqrt{1-d^2}.
+$$
+
+在点处令切、法标架分别为测地标架。按此处符号约定，适配角恒等式给
+
+$$
+W^3=h^3_{11}-h^4_{12},qquad
+W^4=h^4_{22}-h^3_{12}.
+\tag{F11}
+$$
+
+于是 $\mathcal D_{\omega_+}W$ 的一阶主部为
+
+$$
+s\{e_1(h^4_{22}-h^3_{12})+e_2(h^3_{11}-h^4_{12})\}=0,
+\tag{F12}
+$$
+
+最后一个等号正是两次 Codazzi 恒等式。故**定义 HLS 泛函的那张形式** $\omega_+$ 是特殊的：$\mathcal R_+$ 的 $\nabla A$ 主部消去。
+
+但对相反定向形式，主部变成
+
+$$
+\mathcal D_{\omega_-}W
+=2r\,e_1(h^3_{12}-h^4_{22})+	ext{低阶项},
+$$
+
+从而
+
+$$
+\boxed{
+(\mathcal R_-)_{\nabla A}
+=-2b_\beta r\,e_1(h^3_{12}-h^4_{22}).}
+\tag{F13}
+$$
+
+这不是符号计算的假象。取局部图
+
+$$
+F_\sigma(x,y)=xe_1+ye_2+\frac\sigma2x^2y,v_3.
+\tag{F14}
+$$
+
+在原点所有二阶导数为零，故 $A=0$，但
+
+$$
+e_1h^3_{12}=\sigma,qquad e_1h^4_{22}=0,qquad
+\mathcal R_-=-2b_\beta r\sigma.
+$$
+
+改变 $\sigma$ 的符号即可令余项取任意符号；此时环境曲率与一切仅代数依赖于 $A$ 的量都为零。因此，对相反角不可能只由 $\beta$、$\eta_\pm$、环境曲率和 $A$ 的代数量推出点态符号控制。
+
+结论是：旧稿“两个余项都含同样主阶”的说法必须删除，但 D 型结论的逻辑障碍仍然存在，而且现在定位得更准确——障碍集中在相反定向角 $\eta_-$。余项吸收
+
+$$
+\mathcal R_+\ge-\eta_+Q_+,qquad
+\mathcal R_-\ge-\eta_-Q_-
+\tag{F15}
+$$
+
+仍是充分条件；精确轨道 $H+V=0$ 或 $f_\beta=a(t)H$ 也足够。但 (F15) 是新增的微分条件，不能由产品曲率单独推出。空间常 Kähler 角产生最后一种机制时，还必须假设角在**整个流的每个时间片**上为空间常数；本文没有把“初值空间常角”误当成自动保持量。
 
 ---
 
@@ -1540,31 +1621,526 @@ $$
 
 ---
 
-## 12. 最终审计结论
+## 12. 新定理：任意经典法向流的角无关高斯平方完成式
+
+本节给出本次审计产生的新工具。它不是 HLS 加权单调公式的改写，而是只使用“经典光滑浸入族 + 法向速度”的欧氏恒等式；公式本身完全不出现 Kähler 角。
+
+### 12.1 设定
+
+设 $\Sigma^m$ 紧致无边界，
+
+$$
+F:\Sigma\times[a,t_0)\longrightarrow\mathbb R^N
+$$
+
+为经典光滑浸入族，实际法向速度记为
+
+$$
+f=\partial_tF\in N\Sigma_t.
+$$
+
+采用
+
+$$
+H=\Delta_{\Sigma_t}F
+$$
+
+的平均曲率向量号约定。固定中心 $y\in\mathbb R^N$，令
+
+$$
+\tau=t_0-t,qquad X=F-y,qquad
+\rho_{y,t_0}(F,t)=(4\pi\tau)^{-m/2}
+\exp\!\left(-\frac{|X|^2}{4\tau}\right),
+$$
+
+以及
+
+$$
+I(t)=\int_{\Sigma_t}\rho_{y,t_0}\,d\mu_t,qquad
+Z=\frac{X^\perp}{2\tau}.
+$$
+
+### 12.2 定理及严格证明
+
+**定理 12.1（角无关高斯平方完成式）**　上述经典法向流满足精确恒等式
+
+$$
+\boxed{
+\begin{aligned}
+I'(t)
+&=-\int_{\Sigma_t}\rho\,
+\left\langle H+Z,f+Z\right\rangle d\mu_t\\
+&=-\int_{\Sigma_t}\rho\,
+\left|\frac{H+f}{2}+Z\right|^2d\mu_t
++\frac14\int_{\Sigma_t}\rho\,|f-H|^2d\mu_t.
+\end{aligned}}
+\tag{M1}
+$$
+
+**证明。** 经典第一变分给
+
+$$
+\partial_td\mu_t=-\langle H,f\rangle d\mu_t.
+\tag{M2}
+$$
+
+沿移动点直接微分热核：由于 $\tau'= -1$，
+
+$$
+\partial_t\rho
+=\rho\left[
+\frac m{2\tau}-\frac{|X|^2}{4\tau^2}
+-\frac{\langle X,f\rangle}{2\tau}
+\right].
+\tag{M3}
+$$
+
+另一方面，
+
+$$
+\nabla^{\Sigma}\rho=-\frac{\rho}{2\tau}X^\top,
+$$
+
+并且
+
+$$
+\operatorname{div}_{\Sigma}X^\top
+=m+\langle X,H\rangle.
+\tag{M4}
+$$
+
+所以
+
+$$
+\begin{aligned}
+\Delta_{\Sigma}\rho
+&=-\frac1{2\tau}\operatorname{div}_{\Sigma}(\rho X^\top)\\
+&=\rho\left[
+-\frac m{2\tau}
++\frac{|X^\top|^2}{4\tau^2}
+-\frac{\langle X,H\rangle}{2\tau}
+\right].
+\end{aligned}
+\tag{M5}
+$$
+
+把 (M3) 与 (M5) 相加，并使用 $f,H$ 均为法向量，得到
+
+$$
+(\partial_t+\Delta_\Sigma)\rho
+=-\rho\left[
+|Z|^2+\langle Z,f+H\rangle
+\right].
+\tag{M6}
+$$
+
+因 $\Sigma$ 闭且无边界，$\int_{\Sigma_t}\Delta_\Sigma\rho,d\mu_t=0$。结合 (M2) 与 (M6)，
+
+$$
+\begin{aligned}
+I'(t)
+&=\int_{\Sigma_t}(\partial_t\rho-\rho\langle H,f\rangle)d\mu_t\\
+&=-\int_{\Sigma_t}\rho
+\{ |Z|^2+\langle Z,H+f\rangle+\langle H,f\rangle\}d\mu_t\\
+&=-\int_{\Sigma_t}\rho\langle H+Z,f+Z\rangle d\mu_t.
+\end{aligned}
+$$
+
+最后使用纯代数恒等式
+
+$$
+-\langle H+Z,f+Z\rangle
+=-\left|\frac{H+f}{2}+Z\right|^2
++\frac14|f-H|^2,
+\tag{M7}
+$$
+
+便得到 (M1)。证毕。
+
+### 12.3 系数 $1/4$ 的锐性及等号
+
+(M7) 是恒等式，故正误差的系数 $1/4$ 不能统一减小。等号中的负平方消失当且仅当
+
+$$
+H+f+\frac{X^\perp}{\tau}=0.
+\tag{M8}
+$$
+
+当 $f=H$ 时，(M1) 正好退化为 Huisken 单调公式；此时 (M8) 变为标准自收缩子方程
+
+$$
+H+\frac{X^\perp}{2\tau}=0.
+$$
+
+注意一般 $f\ne H$ 时，单独的 $I(t)$ 未必单调；新结论是“负平方加精确速度缺陷”，不是无条件的 Huisken 型单调性。
+
+---
+
+## 13. 补偿单调量、密度极限与切流
+
+定义速度缺陷及其高斯能量
+
+$$
+W=f-H,qquad
+q(t)=\int_{\Sigma_t}\rho|W|^2d\mu_t.
+$$
+
+### 13.1 两种补偿方式
+
+**推论 13.1（向前补偿）**　对任意 $a<t_0$，
+
+$$
+\Phi_a(t)=I(t)-\frac14\int_a^tq(s)\,ds
+\tag{M9}
+$$
+
+单调不增，而且
+
+$$
+\Phi_a'(t)
+=-\int_{\Sigma_t}\rho
+\left|H+\frac W2+\frac{X^\perp}{2\tau}\right|^2d\mu_t\le0.
+\tag{M10}
+$$
+
+若进一步有
+
+$$
+\int_{t_*}^{t_0}q(t)\,dt<\infty,
+\tag{M11}
+$$
+
+则尾部补偿量
+
+$$
+\Psi(t)=I(t)+\frac14\int_t^{t_0}q(s)\,ds
+\tag{M12}
+$$
+
+也单调不增，并且
+
+$$
+\Psi'(t)
+=-\int_{\Sigma_t}\rho
+\left|H+\frac W2+\frac{X^\perp}{2\tau}\right|^2d\mu_t.
+\tag{M13}
+$$
+
+**证明。** (M9)--(M10) 由 (M1) 逐项相减得到。对 (M12)，尾积分的导数为 $-q(t)$，与 (M1) 的 $q(t)/4$ 正项精确抵消，故得 (M13)。由于 $\Psi\ge0$ 且单调，极限存在；(M11) 使尾积分趋于零，所以
+
+$$
+\boxed{\Theta(y,t_0):=\lim_{t\uparrow t_0}I(t)}
+\tag{M14}
+$$
+
+存在且有限。同时积分 (M13) 得
+
+$$
+\int_{t_*}^{t_0}\!\int_{\Sigma_t}\rho
+\left|H+\frac W2+\frac{X^\perp}{2(t_0-t)}\right|^2d\mu_tdt<\infty.
+\tag{M15}
+$$
+
+这完成证明。特别强调：(M14) 是**未加权**高斯密度；其存在条件是缺陷能量 (M11)，而不是 Kähler 角下界。
+
+### 13.2 局部截断公式
+
+对时间无关的 $\phi\in C_c^2(\mathbb R^N)$，同样计算并在闭曲面上分部积分可得
+
+$$
+\begin{aligned}
+\frac d{dt}\int_{\Sigma_t}\phi\rho\,d\mu_t
+={}&-\int_{\Sigma_t}\phi\rho\langle H+Z,f+Z\rangle d\mu_t\\
+&+\int_{\Sigma_t}\rho\left[
+\langle D\phi,f\rangle-\Delta_{\Sigma_t}(\phi\circ F)
+\right]d\mu_t.
+\end{aligned}
+\tag{M16}
+$$
+
+这里最后一行是唯一的截断误差。它来自
+
+$$
+\int\phi\Delta_\Sigma\rho
+=\int\rho\Delta_\Sigma(\phi\circ F),
+$$
+
+而不是凭空丢弃的边界项。因而局部版本需要控制 $D\phi,D^2\phi$ 以及截断环带中的面积/速度；仅写全局公式并不能自动得到局部 $\varepsilon$-正则性。
+
+### 13.3 条件性切流结论
+
+取 $\lambda_i\to\infty$，令
+
+$$
+F_i(p,s)=\lambda_i\bigl(F(p,t_0+s/\lambda_i^2)-y\bigr),qquad s<0.
+$$
+
+缩放后的量满足
+
+$$
+H_i=\lambda_i^{-1}H,qquad
+f_i=\lambda_i^{-1}f,qquad
+W_i=\lambda_i^{-1}W,qquad
+d\mu_s^i=\lambda_i^m d\mu_t.
+$$
+
+对任意固定 $s_1<s_2<0$，抛物缩放严格给出
+
+$$
+\int_{s_1}^{s_2}\!\int\rho_0|W_i|^2d\mu_s^ids
+=\int_{t_0+s_1/\lambda_i^2}^{t_0+s_2/\lambda_i^2}q(t)dt\longrightarrow0,
+\tag{M17}
+$$
+
+并由 (M15) 得
+
+$$
+\int_{s_1}^{s_2}\!\int\rho_0
+\left|H_i+\frac{z^\perp}{2(-s)}+\frac{W_i}{2}\right|^2d\mu_s^ids
+\longrightarrow0.
+\tag{M18}
+$$
+
+再用 $|A|^2\le2|A+B|^2+2|B|^2$，可去掉 $W_i/2$。所以：若某子列在局部整数 Brakke 意义下收敛，且具有高斯质量无损与加权曲率平方的下半连续性，则极限满足
+
+$$
+H_\infty+\frac{z^\perp}{2(-s)}=0
+\quad\text{于 }d\|V_s^\infty\|ds\text{-几乎处处},
+\tag{M19}
+$$
+
+且每个 $s<0$ 的高斯质量等于 $\Theta(y,t_0)$。这里明确把紧致性与无损条件列为假设；(M11) 本身不制造 Brakke 紧致性，也不推出光滑、嵌入或一重性。
+
+---
+
+## 14. 对 HLS 梯度流的专门化
+
+### 14.1 欧氏环境中的精确公式
+
+对 HLS 流，(A3) 给
+
+$$
+f_\beta=H-b_\beta(H+V),qquad
+b_\beta=\frac{\beta\sin^2\alpha}
+{\cos^2\alpha+\beta\sin^2\alpha}\in[0,1].
+\tag{H1}
+$$
+
+因此其速度缺陷恰为
+
+$$
+W_\beta=f_\beta-H=-b_\beta(H+V).
+\tag{H2}
+$$
+
+把 (H2) 代入 (M1)，得到不含任何角权 $c^{-p}$ 的公式
+
+$$
+\boxed{
+\begin{aligned}
+\frac d{dt}\int_{\Sigma_t}\rho,d\mu_t
+={}&-\frac14\int_{\Sigma_t}\rho
+\left|2H-b_\beta(H+V)+\frac{X^\perp}{\tau}\right|^2d\mu_t\\
+&+\frac14\int_{\Sigma_t}\rho\,b_\beta^2|H+V|^2d\mu_t.
+\end{aligned}}
+\tag{H3}
+$$
+
+公式 (H3) **不依赖 Kähler 角作为权函数**；但误差 $b_\beta(H+V)$ 是 HLS 实际速度与 MCF 速度之差，其估计仍可能使用 HLS 几何。
+
+### 14.2 一个真正角无关的充分条件
+
+由 $|H|^2\le2|A|^2$、$|V|^2\le2|A|^2$ 及 $b_\beta\le1$，
+
+$$
+|W_\beta|^2
+=b_\beta^2|H+V|^2
+\le 2(|H|^2+|V|^2)
+\le8|A|^2.
+\tag{H4}
+$$
+
+故得到：
+
+**定理 14.1（HLS 未加权高斯密度存在的曲率尾条件）**　在欧氏环境中，若对中心 $(y,t_0)$ 有
+
+$$
+\int_{t_*}^{t_0}\!\int_{\Sigma_t}ho_{y,t_0}|A|^2d\mu_tdt<\infty,
+\tag{H5}
+$$
+
+则 (M11) 成立，因而尾部补偿量 (M12) 单调，未加权高斯密度 (M14) 存在，并有耗散 (M15)。
+
+这里 (H5) 本身完全没有 $\cos\alpha$。它是可直接引用的新定理，但其结论只到“密度存在 + 缩放耗散”；若要正则延拓，还必须另加适用于该流的密度间隙/局部正则性定理。
+
+### 14.3 与 HLS 原加权公式的关系
+
+HLS 的局部量含权
+
+$$
+\int_{\Sigma_t}c^{-p}\phi\rho\,d\mu_t.
+$$
+
+新公式研究的是 $\int\phi\rho$。两者服务于不同目的：前者把辛条件和流方程组织进一个专用 $\varepsilon$-正则性框架；后者把任何法向流统一看成“MCF + 速度缺陷”。不能因 (H3) 不写 $c$，就删除 HLS 正则性定理中的角权和角下界。
+
+---
+
+## 15. 黎曼环境的精确外嵌版本
+
+设 $i:(M,g)\hookrightarrow\mathbb R^N$ 为固定 $C^2$ 等距嵌入，$F_t:\Sigma^m\to M$ 的实际法向速度为 $f$，$H_M$ 是 $M$ 内平均曲率。令
+
+$$
+E=\sum_{j=1}^m II_M(e_j,e_j),
+$$
+
+其中 $II_M$ 是 $i(M)\subset\mathbb R^N$ 的第二基本形。欧氏复合浸入 $X=i\circ F$ 满足
+
+$$
+H_{\mathbb R^N}=di(H_M)+E,qquad
+\partial_tX=di(f),
+\tag{R1}
+$$
+
+且 $E\perp di(TM)$。
+
+把
+
+$$
+q=\frac{(X-X_0)^\perp}{2\tau}=q_M+q_E
+$$
+
+按
+
+$$
+N^{\mathbb R^N}\Sigma=N^M\Sigma\oplus N^{\mathbb R^N}M
+$$
+
+正交分解，应用 (M1) 并分别平方完成，得到精确式
+
+$$
+\boxed{
+\begin{aligned}
+I'(t)
+={}&-\frac14\int\rho|H_M+f+2q_M|^2d\mu
++\frac14\int\rho|f-H_M|^2d\mu\\
+&-\int\rho|q_E+E/2|^2d\mu
++\frac14\int\rho|E|^2d\mu.
+\end{aligned}}
+\tag{R2}
+$$
+
+若流所到区域上 $|II_M|\le K$，则 $|E|\le mK$。丢掉两个负平方得到
+
+$$
+I'(t)
+\le\frac14D(t)+CI(t),qquad
+D(t)=\int\rho|f-H_M|^2d\mu,quad
+C=\frac{m^2K^2}{4}.
+\tag{R3}
+$$
+
+因此
+
+$$
+e^{-Ct}I(t)-\frac14\int_a^te^{-Cs}D(s)ds
+\tag{R4}
+$$
+
+单调不增。若 $\int_a^{t_0}D(t)dt<\infty$，则 $I(t)$ 仍有有限极限。对 HLS 流，$f-H_M=-b_\beta(H_M+V)$，故 (H4) 继续控制内禀速度缺陷；$E$ 只是固定外嵌的低阶误差，在抛物放缩下趋于零。
+
+这给出报告所求的“其他流形”版本：公式对任何能固定等距嵌入且在所考察区域 $II_M$ 有界的黎曼环境成立，不需要 Kähler 结构；Kähler 结构只在识别 HLS 速度缺陷时重新出现。
+
+---
+
+## 16. 为什么新公式不能单独替代角条件或推出延拓
+
+### 16.1 原始高斯积分确实可能上升
+
+对任意法向流，(M1) 有正的缺陷项。取静止圆球 $S_R^m\subset\mathbb R^{m+1}$，即 $f=0$，固定中心为球心。此时
+
+$$
+I(t)=\omega_mR^m(4\pi\tau)^{-m/2}e^{-R^2/(4\tau)}.
+$$
+
+直接微分可见，当 $R^2>2m\tau$ 时 $I'(t)<0$，当 $R^2<2m\tau$ 时 $I'(t)>0$。所以不存在对所有法向流都成立的“未补偿 $I$ 单调不增”定理。半径满足 $R^2=2m\tau$ 时平方完成达到临界，也说明 $1/4$ 锐利。
+
+### 16.2 “密度 $<2$ + 缺陷为零”仍不推出无奇点
+
+标准圆缩球是普通 MCF，故 $f-H=0$，新公式的缺陷完全消失；但它仍在有限时刻形成 Type I 奇点。其高斯密度
+
+$$
+\Theta_{n,k}=\omega_k\left(\frac{k}{2\pi e}\right)^{k/2}
+\tag{O1}
+$$
+
+对球形收缩子和圆柱收缩子在低维均可小于 $2$；例如二维球为 $4/e<2$。这说明“$<2$”不是一般 MCF 的正则阈值，真正的 White 型正则性阈值是“充分接近 $1$”，而且其定理对象是 MCF，不是任意强迫流。
+
+这里圆球只是反驳“由角无关恒等式本身推出延拓”的逻辑；它不是平坦 $\mathbb C^2$ 中严格辛 HLS 流的反例，因为标准 Kähler 形式在 $\mathbb C^2$ 中为恰当形式，闭曲面不可能处处满足 $F^*\omega>0$。
+
+### 16.3 未加权密度与 HLS 加权阈值不可互换
+
+取 $\mathbb C^2$ 中 Kähler 余弦为常数 $c\in(0,1]$ 的平面 $P_c$，以整数重数 $m$ 看作 varifold。其未加权高斯密度为
+
+$$
+\Theta=m,
+$$
+
+而 HLS 型权 $c^{-p}$ 给出的密度为
+
+$$
+\Theta_{\mathrm{HLS}}=mc^{-p}.
+\tag{O2}
+$$
+
+即使未加权条件迫使 $m=1$，也不能推出 $c^{-p}<1+\varepsilon$；后者还要求
+
+$$
+c>(1+\varepsilon)^{-1/p}.
+$$
+
+所以新的未加权公式不能取代 B$_\beta$ 中 HLS Corollary 4.2 的加权低密度假设。
+
+### 16.4 可严格主张的最强结论
+
+综合本节，角无关公式带来的正确结论是：
+
+1. 对任意经典法向流，速度缺陷给出精确补偿单调性；
+2. 缺陷高斯能量有限时，未加权高斯密度存在，固定负时间尺度上的放缩缺陷消失；
+3. 加上明确的 Brakke 紧致性、无质量损失和下半连续性，可推出切流满足弱自收缩方程；
+4. 若再要“密度控制 $Rightarrow$ 正则延拓”，必须另有适用于该具体强迫流的 $\varepsilon$-正则性，并验证其尺度、单位密度及强迫项空间；
+5. 这些结论均不能自动替代 Kähler 角下界、HLS 加权密度、Bernstein 层级或相反角余项吸收。
+
+---
+
+## 17. 最终审计结论
 
 1. 原报告第 1 节的角下界结论正确，但该下界只在空间最小点成立，不能写成未经证明的全空间抛物不等式；第 1.3 节已经用明确定义的右下 Dini 导数修复。
 2. 原报告第 2 节引用的 HLS $\varepsilon$-正则性少写了外围尺度 $\rho$：原定理要求 $0<r<\rho$，并要求流存在于 $P(X,t;8\rho)$。因此原来的一尺度表述不能原样通过；第 2.1、2.2 与 11.1 节已经按双尺度版本修复。
 3. 原报告第 3.1 节把 HLS 的法丛耦合主符号误写成标量 $a^{ij}$；一般抛物系统没有标量最大值原理。C 型定理必须新增 (C3)--(C4) 的 Bernstein 能量层级或等价系统正则性。
-4. 修复上述缺口后，B、C、D 主命题在修订稿明确列出的强附加条件下成立；它们不是 HLS 原论文中 Wang 定理的无条件迁移。
-5. 最关键的未自动证明部分仍是 HLS 余项、统一低密度、Bernstein 层级、曲率--梯度强制性和 LS 规范速度。
+4. 修复上述缺口后，B、C、D 主命题在修订稿明确列出的强附加条件下成立；它们不是 HLS 原论文中 Wang 定理的无条件迁移。其中 C 还必须有 Bernstein 系统正则性、曲率--梯度强制性及完整 LS/Fredholm 输入；D 还必须有全时间高阶正则性和相反角余项吸收。
+5. 第 6.3 节的旧判断发生本质修正：定义角的 $\nabla A$ 主部由 Codazzi 消去，但相反角仍留下可任意变号的主部 (F13)。因此“环境曲率自动推出 HLS 双角 logistic”依然不成立，只是障碍已被精确定位。
 6. 第 5 节正 Einstein 刚性分类成立：在严格原始几何假设下没有新的紧致环境 $M$。
 7. 第 8.3 节必须把“积分必发散”改成“离开严格辛定义域且方程退化”。
 8. 第 10.2 节原覆盖例不是嵌入；(J1) 给出真正的嵌入 $d$ 层投影修正版。
 9. 第 10.5 节是尺度集中说明，不是一个实际 HLS 流反例。
 10. 所有其余公式链在本文补出的标准正则性步骤和明确量词下通过复核。
+11. 新定理 (M1) 对任意经典法向流成立，完全不使用 Kähler 角；有限速度缺陷给出补偿单调量、未加权高斯密度和条件性切流自收缩结论。
+12. 新公式不能单独推出延拓，也不能把 HLS 加权低密度替换为未加权条件；圆缩球和平面权重计算分别给出这两个限制的严格检验。
 
 ## Danus 再审计记录
 
-本次重新调用 7 个 Danus 工作单元：high $\times3$、xhigh $\times4$。任务按原报告章节切分，分别复算速度与能量、B 的密度尺度、Bernstein 与 $L^2$ 升级、C 的 LS 锁定、正 Einstein 分类、双角方程和 D/覆盖/反例，共形成 36 条经验证事实。最重要的独立回执是：
+本次重新调用 12 个 Danus 工作单元：high $\times4$、xhigh $\times8$，模型均为 `gpt-5.6-sol`。任务按原报告章节与新公式方向切分，分别复算速度与能量、B 的密度尺度、Bernstein 与 $L^2$ 升级、C 的 LS 锁定、正 Einstein 分类、双角方程、D/覆盖/反例、欧氏与外嵌高斯公式、切流缩放和反向压力测试；本文写作锁定并实际纳入其中 34 条结构化事实记录。最重要的独立回执是：
 
 - HLS Corollary 4.2 必须保留 $0<r<\rho$ 两个尺度；
 - §3.1 的 HLS 主符号为法丛耦合系统，原标量最大值原理没有依据；
 - §3.3 缺少解析梯度映射的目标空间、Fredholm 指标 $0$ 与耗散范数兼容；
 - 正 Einstein 双复结构分类成立，但非正 Einstein 可有非平凡紧商；
-- HLS 双角余项含法向速度的一阶导数，环境曲率不能自动消掉；
+- 定义角的 HLS 余项主部由 Codazzi 消去，但相反角仍有无符号 $\nabla A$ 主部，环境曲率不能自动消掉；
 - 覆盖、Jacobian、时间规范和反例链在本文所列修正后闭合。
+- 任意法向流的角无关平方完成式、尾部补偿量及外嵌误差分裂均可逐项重建；
+- 标准圆缩球与常角平面分别阻止“密度 $<2$ 自动延拓”和“未加权阈值替代 HLS 加权阈值”。
 
-正文只采用能够由公式重建、通过 Danus 验证门或由明确外部定理支持的结论；最终选定的核心事实编号已记录在项目 TARGET.md。
+正文只采用能够由公式重建、通过 Danus 事实图交叉核验或由明确外部定理支持的结论。额外尝试调用付费 Pro/Opus 咨询，但当前环境没有相应 API 凭据或 CLI，故报告没有虚称使用这些模型；最终数学结论来自上述 12 个可用工作单元和主审复算。
 
 ## 参考文献
 
@@ -1578,9 +2154,13 @@ $$
 8. M. Kourganoff, *Similarity Structures and de Rham Decomposition*, arXiv:1507.05573 (2015). [arXiv](https://arxiv.org/abs/1507.05573).
 9. X. Han, J. Li, J. Sun, *The Deformation of Symplectic Critical Surfaces in a Kähler Surface—I*, arXiv:1504.04138 (2015). [arXiv](https://arxiv.org/abs/1504.04138).
 10. F. Rupp, *On the Łojasiewicz--Simon Gradient Inequality on Submanifolds*, arXiv:1907.09292 (2019). [arXiv](https://arxiv.org/abs/1907.09292).
+11. G. Huisken, *Asymptotic Behavior for Singularities of the Mean Curvature Flow*, J. Differential Geom. 31 (1990), 285--299. [DOI 10.4310/jdg/1214444099](https://doi.org/10.4310/jdg/1214444099).
+12. B. White, *A Local Regularity Theorem for Mean Curvature Flow*, Ann. of Math. 161 (2005), 1487--1519. [Annals](https://annals.math.princeton.edu/2005/161-3/p07).
+13. K. Kasai, Y. Tonegawa, *A General Regularity Theory for Weak Mean Curvature Flow*, Calc. Var. Partial Differential Equations 50 (2014), 1--68. [DOI 10.1007/s00526-013-0626-4](https://doi.org/10.1007/s00526-013-0626-4).
+14. J. Hirsch, J. Zhu, *Uniqueness of Tangent Flows for Forced Mean Curvature Flow*, arXiv:2310.08005 (2023). [arXiv](https://arxiv.org/abs/2310.08005).
 
 ### 审计边界
 
 - 全文只研究奇点以前的经典光滑 HLS 流。
-- HLS 延拓准则、HLS $\varepsilon$-正则性和抽象 Łojasiewicz--Simon 定理作为标明来源的外部输入。
+- HLS 延拓准则、HLS $\varepsilon$-正则性和抽象 Łojasiewicz--Simon 定理作为标明来源的外部输入；White 与 Kasai--Tonegawa 只用于界定可援引的正则性范畴，没有被误套到任意 HLS 强迫流。
 - 本文审计“原报告是否从所列假设推出结论”，不宣称新增强假设已由 HLS 原方程自动验证。
